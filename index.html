@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">    
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">    
+</head>
+
+<body>
+    <div class="my-container">
+<!-- aside left -->
+        <aside class="aside-left">
+            <!-- header -->        
+            <header class="my-header">
+                <h2 class="my-header-h2">Coins Journey</h2>
+                <h6 class="my-header-h6">Choose Your Poison</h6>
+            </header>          
+            <!-- aside links -->
+            <aside class="my-aside-link-item">
+                <div type="button" class="link-item" onclick="reportsLive()">Reset Graph</div>
+                <div type="button" class="link-item">Other Projects</div>
+                <div type="button" class="link-item" onclick="coinsInit()">Update Data</div>
+                <a target="_blank" class="link-item" href="https://github.com/Hen-Haim">Git Hub Link</a>
+            </aside>
+        </aside>         
+<!-- main -->
+        <main class="my-main">
+            <ul class="nav nav-pills my-nav-ul">
+                <li class="nav-item my-nav-item-li">
+                    <a onclick="coinsInit()" class=" btn-primary nav-link active my-nav-item home" href="#">Home</a>
+                </li>
+                <li class="nav-item my-nav-item-li">
+                    <a onclick="reportsLive()" class=" btn-primary nav-link my-nav-item reports" href="#">Live Reports</a>
+                </li>
+                <li class="nav-item my-nav-item-li">
+                    <a onclick="myAbout('web')" class=" btn-primary nav-link my-nav-item about" href="#">About</a>
+                </li>
+                <li class="nav-item my-nav-item-li">
+                    <a onclick="mySwitchClear()" class=" btn-primary nav-link my-nav-item-clear" href="#">
+                        Clear
+                    </a>
+                </li>
+                <li class="nav-item my-nav-item-li">
+                    <input class=" input-search" type="search" placeholder="Search By Key Words"
+                    aria-label="Search">
+                </li>
+                <li class="nav-item my-nav-item-li">
+                    <button onclick="searchCoins()" class="btn-primary nav-link button-search "
+                    type="button">Search</button>                
+                </li>
+            </ul>            
+<!-- main content -->
+            <div class="card-group row row-cols-4 my-content"></div>
+        </main>
+<!-- aside right -->
+        <aside class="aside-right">
+            <!-- latest updates -->
+            <aside class="latest-update">
+                <div class="latest-update-header">
+                    <h3 class="latest-update-h3">Your Latest Interest:</h3>
+                </div>
+                <div class="latest-update-content"></div>
+            </aside>
+            <!-- my name -->
+            <aside class="web-developing-name">
+                <h5 class="web-developing">Web Developing With:</h5>
+                <h2 class="my-name">Hen Haim</h2>
+            </aside>
+        </aside>
+    </div>
+<!-- progress bar -->
+    <div class="my-content-progress">
+        <div class="outer-circle"></div>
+        <div class="inner-circle">
+            <span class="span-for-circle"></span>
+        </div>
+    </div>
+<!-- modal -->
+    <div class="modal fade my-modal-main" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg my-lg-model">
+            <div class="modal-content my-modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title my-h5-modal" id="staticBackdropLabel">You just toggle-on the 6th coin.
+                        You can only choose 5, either toggle-off one for your 6th coin or keep those 5.
+                    </h5>
+                    <button type="button" class="btn-close" onclick="clearingTheFive()" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body row-cols-md-5 my-model-body">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+    integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+    integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+</script>
+<script src="./index.js"></script>
+
+
+</html>

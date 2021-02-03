@@ -1,0 +1,814 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding:0;
+}
+
+.my-container {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 100%;
+    background-image: url(./assets/money-bg-pic.jpg);
+    min-height: max-content;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    position: relative;  
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: rgb(226, 206, 189);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(2, 54, 28);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(34, 80, 207);
+}
+
+/* ******************************************************************************** */
+/********************************--- aside left ---*********************************/
+.aside-left{
+    display: flex;
+    flex-direction: column;
+    grid-column:25%;
+    grid-row:100%;
+    padding:0;
+    margin:0 1vw 0 0;
+}
+
+.my-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color:white;
+    align-items: center;
+    opacity: 100%;
+    margin:0vw 0vw 1vw 0vw;
+    height:75%;
+    width:100%;
+    position:relative;
+    border-radius: 15%;
+    text-align:center;
+    box-shadow: inset 10px 10px 20px #421901, 43px 20px 50px rgb(41, 21, 5);
+    text-shadow: 0.3vw 0.3vw 2px rgb(36, 18, 0), 0.5vw 0.5vw 10px rgb(43, 23, 4);
+    background: rgb(152,41,6);
+    background: radial-gradient(circle, rgba(152,41,6,0.17690826330532217) 0%, rgba(2,44,19,0.7315301120448179) 100%);
+}
+
+.my-header-h2 {
+    font-family: Franklin Gothic Heavy;
+    margin: 0;
+    margin-bottom:0.4vw;
+    font-size:2.7vw;
+}
+
+.my-header-h6 {
+    font-family: Lucida Handwriting;
+    margin: 0;
+    margin-bottom:0.4vw;
+    font-size:1.2vw;
+}
+
+.my-aside-link-item{
+    margin:0vw 1vw 1vw 0vw;
+    align-items: center;
+    display:flex;
+    height:25%;
+    width:100%;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    border-radius: 15%;
+    padding:1.7vw 0 1vw 0vw ;
+    background: rgb(255,186,111);
+    background: radial-gradient(circle, rgba(255,186,111,0.81) 0%, rgba(37,112,145,0.87) 100%);
+}
+
+.link-item{
+    text-align: center;
+    font-family:'Franklin Gothic Medium';
+    width:40%;
+    font-size:110%;
+    color:rgb(7, 12, 31);
+    height: 45%;
+    padding:0.5vw 0.5vw 0.5vw 0.5vw;
+    border-radius: 11%;
+    background: rgb(37,112,145);
+    text-shadow: 2vw 2vw 2vw rgb(36, 18, 0), 0.5vw 0.5vw 10px rgb(43, 23, 4);
+}
+.link-item:nth-child(1){
+    background: linear-gradient(135deg, rgba(37,112,145,0.864233193277311) 0%, rgba(255,186,111,0.8054096638655462) 100%);
+}
+.link-item:nth-child(2){
+    background: linear-gradient(225deg, rgba(37,112,145,0.864233193277311) 0%, rgba(255,186,111,0.8054096638655462) 100%);
+}
+.link-item:nth-child(3){
+    background: linear-gradient(45deg, rgba(37,112,145,0.864233193277311) 0%, rgba(255,186,111,0.8054096638655462) 100%);
+}
+.link-item:nth-child(4){
+    background: linear-gradient(315deg, rgba(37,112,145,0.864233193277311) 0%, rgba(255,186,111,0.8054096638655462) 100%);
+}
+
+.link-item:hover{
+    text-shadow: 0.1vw 0.18vw 0.2vw rgb(62, 67, 85), 0.3vw 0.1vw 10vw rgb(0, 8, 36), 0.2vw 0.2vw 5vw rgb(43, 23, 4);
+    color:rgb(82, 25, 7);
+    transition: all 0.2s ease-in-out;
+}
+
+
+/* ******************************************************************************** */
+/***********************************--- main ---************************************/
+.my-main {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    margin-bottom:1vw;
+    grid-column:50%;
+    grid-row:100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.my-nav-ul {
+    padding:0;
+    height:20px;
+    
+    flex:1;
+    margin: 0.5vw 0vw 0.5vw 0vw;
+    height:100%;
+    width:100%;
+}
+
+.my-nav-item-li{
+    margin:0 0.5vw 0 0;
+    height:100%;
+    width:10%;
+}
+
+.my-nav-item-clear {
+    box-shadow: inset 10px 10px 20px #240901, 2px 5px 10px rgb(41, 21, 5);
+    color: rgba(14, 71, 45, 0.938);
+    background: rgb(207, 207, 207);
+    font-family:'Franklin Gothic Medium';
+    font-stretch: extra-condensed;
+    text-align: center;
+    font-size:1vw;
+    font-weight:bold;
+    border: solid 2px rgba(8, 41, 26, 0.918);
+    width:100%;
+    height:100%;
+}
+
+.my-nav-item,.button-search {
+    background-color: rgba(24, 105, 69, 0.938);
+    color: #ffffff;
+    box-shadow: inset 3px 3px 20px #1b1b1b;
+    border: solid 2px rgba(17, 17, 17, 0.644);
+    font-family:'Franklin Gothic Medium';
+    font-stretch: extra-condensed;
+    font-size:1vw;
+    text-align: center;
+    height:100%;
+}
+
+.reports,.home, .about{
+    width:100%;    
+}
+
+.about{
+    border-radius: 35%;
+}
+
+.my-nav-item-li:nth-child(2){
+    width:19%;
+}
+
+.my-nav-item-li:nth-child(5){
+    width:28%;
+    height:100%;
+    margin:0 0 0 7%;    
+}
+
+.toggle-switch-between {
+    position: absolute;
+    left: 190px;
+    font-size: 30px;
+}
+
+.input-search {
+    text-transform: lowercase;
+    box-shadow: inset 10px 10px 20px #240901, 2px 5px 10px rgb(41, 21, 5);
+    font-family:'Franklin Gothic Medium';
+    height:100%;
+    width:100%;
+    margin:0 0 10% 0;
+    font-size:1vw;
+    border:rgba(37, 37, 37, 0.781) solid 0.01vw;
+    color: rgb(238, 233, 212);
+    background-color: transparent;
+}
+
+.button-search{
+    margin:0 0 0 10%;
+    width:100%;
+}
+
+::placeholder{
+    color: rgb(221, 206, 200);
+    font-family:'Franklin Gothic Medium';
+    padding-left: 1vw;
+}
+
+.input-search:focus{
+    outline:none;
+    background-color: rgb(130, 164, 238);
+}
+
+/* *********************************************************************************** */
+/*********************************--- my content ---***********************************/
+.my-content {
+    flex:15;
+    display: flex;
+    flex-flow: row wrap;
+    width:100%;
+    height: 93%;
+    position: relative;
+    align-content: flex-start;
+    padding: 0.5vw 0.5vw 0.5vw 0.5vw;
+    margin: 0;
+    overflow-y: scroll;
+    overflow-x:auto;
+    background-image: url(./assets/for-coins.jpg);
+    min-height: max-content;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:100% 100%; 
+}
+
+.coin-div {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5vw;
+    width:22%;
+    padding: 0.1vw;
+    position: relative;
+    background-color:transparent;
+}
+
+.coin-div-top {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15%;
+    padding: 0.4vw;
+    position: relative;
+    background-color: rgba(255, 244, 223, 0.699);
+    box-shadow: inset 10px 10px 20px #421901, 43px 20px 50px rgb(41, 21, 5);
+    font-size: 15px;
+    height: 50%;
+    width: 100%;
+}
+.the-card-coin{
+    background-color: transparent;
+    border:none;
+    padding:0;
+    margin:0;
+}
+
+.my-card{
+    background-color: transparent;
+    border:none;
+    width: 100%;
+    height:50%;
+}
+
+.coin-toggle {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 5% 5% 0.5vw 5%;
+    position: relative;
+    align-content:center;
+    padding:0;
+    height:20%;
+}
+.coin-symbol {
+    font-size: 115%;
+    text-transform: uppercase;
+    font-family: 'Lucida Sans Regular';
+    font-weight: bold;
+    font-stretch: extra-condensed;
+    font-weight: bolder;
+    margin: 0 0% 0 0;
+    height:100%;
+    width:50%;
+}
+
+.coin-toggle-switch {
+    font-size: 22px;
+    background-color: rgb(245, 239, 236);
+    box-shadow: inset 1px 1px 10px #421901, 2px 5px 10px rgb(41, 21, 5);
+    margin:0.08vw 0  0  0;
+}
+
+.coin-name {
+    font-family: 'Trebuchet MS';
+    text-transform: capitalize;
+    text-align-last: center;
+    background-color: transparent;
+    margin: 0vw 1vw 0vw 1vw;
+    height:5.4vw;
+    padding:0.1vw;
+    text-align:center;
+}
+
+.coin-info {
+    font-size: 14px;
+    background-color: rgba(24, 105, 69, 0.938);
+    box-shadow: inset 3px 3px 20px #1a0c00;
+    font-family:'Franklin Gothic Medium';
+    padding: 0.3vw;
+    margin: 0vw 10% 0vw 12.5%;
+    position: relative;
+    align-content: center;
+    width:75%;
+}
+
+.my-collapse-card>p {
+    font-size: 0.9vw;
+    color:rgb(49, 20, 1);
+    font-family: 'Franklin Gothic';
+    font-weight:bolder;
+    text-shadow: 0.2vw 0.2vw 0.3vw rgb(231, 229, 226);
+    margin-bottom: 0.6vw;
+}
+
+.my-collapse-card>img {
+    height: 2.5vw;
+    width: 2.5vw;
+    align-self: center;
+    margin-bottom: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+.my-collapse-card {
+    opacity: 100%;
+    height: 11vw;
+    width: 100%;
+    background: rgb(0,112,192);
+    background: linear-gradient(180deg, rgba(0,112,192,0.92) 0%, rgba(247,189,125,0.95) 100%);
+    border-radius: 15%;
+    box-shadow: inset 10px 10px 20px #421901, 43px 20px 50px rgb(41, 21, 5);
+}
+
+
+/* *********************************************************************************** */
+/************************************--- about ---*************************************/
+.about-div{
+    display:flex;
+    flex-direction: row;
+    padding:1vw;
+    width:100%;
+    height:100%;
+    margin:0;
+}
+.about-buttons{
+    flex:1;
+    position: relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+}
+.all-the-words{
+    font-size:25px;
+    padding:1.7vw;
+}
+.button-location{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height:14vw;
+}
+.web-button-about,.me-button-about{
+    width:6vw;
+    height:6vw;
+    border-radius: 50%;
+    border:none;
+    font-size:1.5vw;
+    background: rgb(0,112,192);
+    background: linear-gradient(255deg, rgba(0,112,192) 0%, rgba(247,189,125) 100%);
+    box-shadow:  inset 5px 0.5vw 1vw 0.2vw #421901, 0.3vw 0.3vw 5px rgb(26, 13, 0),7px 7px 3vw 0.8vw rgb(0, 17, 22);
+    font-family: Lucida Handwriting;
+    color:white;
+    font-weight: bold;
+    font-stretch: extra-expanded;
+    text-shadow: 0.3vw 0.3vw 2px rgb(26, 13, 0), 0.5vw 0.5vw 10px rgb(43, 23, 4), 7px 7px 5px rgb(1, 26, 34);
+}
+.web-button-about:hover,.me-button-about:hover{
+    box-shadow: inset 0vw -0.3vw 1vw 0.2vw #421901, 0.2vw 0.5vw 5vw 0.1vw rgb(245, 210, 176);
+    font-family: Lucida Handwriting;
+    font-size:1.6vw;
+    transform: rotate(5deg);
+    text-shadow: 0.3vw 0.3vw 2px rgb(26, 13, 0), 0.3vw 0.3vw 3px rgb(43, 23, 4), 1px 1px 1px rgb(1, 26, 34);
+    transition: all 0.2s ease-in-out;
+    border:none;
+
+}
+.web-button-about:focus,.me-button-about:focus{
+    background: rgb(0,112,192);
+    outline:none;  
+}
+
+.about-main{
+    flex:5;
+    position: relative;
+    height:100%;
+}
+
+.about-web>h2 {
+    text-align: center;
+}
+
+.about-web>h2, .about-me>h2 {
+    flex:1;
+    color:rgb(32, 13, 0);
+    font-family: 'Franklin Gothic Medium';
+    padding:0.5vw 0vw 0.7vw 0.2vw ;
+    margin-bottom: 10vw; 
+    margin:3vw;
+    font-size:3vw;   
+}
+.about-web>div, .about-me>div {
+    flex:20;
+    box-shadow: inset 0vw 0.5vw 0.7vw 0vw  #421901;
+    padding:1vw;
+    border-bottom-left-radius:12%; 
+    border-bottom-right-radius:12%; 
+    overflow-y: scroll;
+
+}
+.about-web>div::-webkit-scrollbar-track, .about-me>div::-webkit-scrollbar-track {
+    margin-top: 1.5vw;
+    margin-bottom: 2.9vw;
+}
+
+.my-pictures{
+    position: relative;
+    background-color: transparent;
+    right:29vw;
+}
+.me-1, .me-2, .me-3{
+    border-radius: 50%;
+    border:none;
+    opacity: 92%;
+    position: absolute;
+    z-index: 1000;
+    box-shadow:  inset 5px 0.5vw 1vw 0.2vw #421901, 0.3vw 0.3vw 5px rgb(26, 13, 0),7px 7px 3vw 0.8vw rgb(0, 17, 22);
+}
+.me-1{
+    width:9vw;
+    height:9vw;
+    left:50vw;
+    top:-0.2vw;
+}
+
+.me-2{
+    width:7.3vw;
+    height:7.3vw;
+    transform: rotate(10deg);
+    top:5.3vw;
+    left:59.5vw;
+}
+
+.me-3{
+    width:5vw;
+    height:5vw;
+    transform: rotate(-25deg);
+    top:-0.5vw;
+    left:63.5vw;
+}
+
+.about-web,.about-me{
+    flex:5;
+    height:100%;
+    border-radius: 12%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 244, 223, 0.699);
+    box-shadow: inset 10px 10px 20px #421901, 43px 20px 50px rgb(41, 21, 5);
+}
+
+/* ************************************************************************************ */
+/********************************--- aside right ---***********************************/
+.aside-right{
+    display: flex;
+    flex-direction: column;
+    grid-column:25%;
+    grid-row:100%;
+    padding:0;
+    margin:0;
+}
+
+.latest-update{
+    display: flex;
+    flex-direction: column;
+    margin:0vw 0vw 0vw 1vw ;
+    border-radius: 12%;
+    height:60%;
+    width:95%;
+    background: rgb(247,189,125);
+    background: radial-gradient(circle, rgba(194, 147, 97, 0.438) 0%, rgba(56, 56, 56, 0.795) 100%);
+    text-shadow: 0.3vw 0.3vw 2px rgb(36, 18, 0), 0.5vw 0.5vw 10px rgb(43, 23, 4);
+}
+
+.latest-update-header{
+    height:6.3vw;
+    box-shadow: 0px 5px 15px rgb(41, 21, 5);
+    margin: 0;
+    font-stretch: extra-condensed;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+}
+
+.latest-update-h3{
+    color:white;
+    font-family: 'Franklin Gothic Medium';
+    padding:2.5vw 0vw 0vw 3.2vw ;
+    margin-bottom: 10vw;
+    font-size:2.2vw;
+}
+
+.latest-update-content{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+.latest-update-content::-webkit-scrollbar-track{
+    margin-top: 1.5vw;
+    margin-bottom: 2.9vw;
+}
+.organizing-the-updates{
+    display:flex;
+    flex-direction: row;
+    color:rgb(243, 233, 215);
+    font-family:'Franklin Gothic Medium';
+    padding:8% 0 9% 5%;
+    box-shadow: 0px 2px 10px rgb(41, 21, 5);
+    font-stretch: extra-expanded;
+    font-size:1.08vw;
+    width:100%;
+    height:20%;
+}
+
+.organizing-the-updates>img{
+    padding:0;
+    margin:-3% 0.7vw 0vw 0%;
+    width:2.25vw;
+    height:2.25vw;
+}
+
+.latest-for-p{
+    text-align: center;
+    display:flex;
+    align-items: center;
+    height:100%;
+    width:95%;
+    flex-direction: row;
+    padding: 0vw 0vw 0vw 0.1vw;
+    justify-content: space-between;
+}
+
+.latest-for-p>p{
+    text-align: center;
+    margin:0vw 0vw 0 1.4vw;
+    align-self: center;
+    width:15%;
+    padding:0.4vw;
+}
+
+.latest-update-More-Info:nth-child(3){
+    width:max-content;
+    height:max-content;
+    border-radius: 12%;
+    background-color: rgba(24, 105, 69, 0.938);
+    box-shadow: inset 3px 3px 20px #1a0c00;
+    border: solid 2px rgba(17, 17, 17, 0.644);
+    font-size: 0.8vw;
+    padding:0.6vw;
+    margin:2.7vw 2vw 2vw 1vw;
+}
+
+.latest-update-Toggled-On:nth-child(3){
+    color:  rgb(245, 239, 236);
+    border: solid 0.5px rgba(0, 128, 167, 0.644);
+    border-radius: 42%;
+    background-color: rgb(46, 107, 221);
+    box-shadow: inset 3px 3px 20px #1a0c00;
+    width:max-content;
+    height:max-content;
+    padding:0.6vw 0.6vw 0.6vw 0.6vw;
+    font-size: 0.8vw;
+    margin:1.8vw;
+
+}
+.web-developing-name{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    color:rgb(245, 232, 214);
+    text-align: center;
+    margin:1vw 0vw 1vw 1vw;
+    height:40%;
+    width:95%;
+    font-family: lucida Handwriting;
+    border-radius: 15%;
+    box-shadow: inset 0.2vw 0vw 2vw 0.2vw #421901;
+    background: rgb(247,189,125);
+    background: radial-gradient(circle, rgba(255, 200, 141, 0.623) 0%, rgba(38, 38, 38, 0.842) 100%);
+    text-shadow: 0.3vw 0.3vw 2px rgb(36, 18, 0), 0.5vw 0.5vw 10px rgb(43, 23, 4);
+}
+
+.web-developing{
+    font-family: Lucida Handwriting;
+    margin:1vw 1vw 0.4vw 1vw;
+    font-size:1.2vw;
+}
+.my-name{
+    font-family: Franklin Gothic ;
+    margin: 0;
+    margin-bottom:0.4vw;
+    font-size:3.5vw;
+}
+
+/* ********************************************************************************** */
+/**************************************** modal **************************************/
+.my-modal-content {
+    background-image: url("./assets/five-coins-bg.jpg");
+    background-size: cover;
+    border: solid rgba(0, 0, 0, 0.452) 2px;
+    box-shadow: inset 10px 10px 20px #000000, 43px 20px 50px rgb(41, 21, 5);
+}
+
+.my-model-body {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+
+.my-h5-modal {
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    text-emphasis-color: rgb(250, 220, 157);
+    text-shadow: 5px 5px 3px rgb(32, 16, 0), 3px 3px 2px rgb(255, 255, 255),10px 10px 20px rgb(32, 16, 0), 7px 7px 5px rgb(1, 26, 34);
+    font-size: 2.2vw;
+    font-stretch: ultra-condensed;
+    -webkit-text-fill-color:rgba(253, 212, 188, 0.959) ;
+    -webkit-text-stroke-color:  rgba(2, 83, 141, 0.945);
+    -webkit-text-stroke-width: 0.07vw;
+}
+
+.my-modal-progress::-webkit-scrollbar{
+    display: none;
+}
+
+/* ********************************************************************************** */
+/************************************ graphs chart ************************************/
+.my-chart-report {
+    opacity: 90%;
+    width:45.9vw;
+    height:35.8vw;
+    margin-top: 4vw;
+}
+
+/* ***************************************************************************************** */
+/**************************************--- progress bar ---**********************************/
+.my-content-progress{
+    opacity: 0%;
+    width:fit-content;
+    height:fit-content;
+    border-radius: 50%;
+    left:39vw;
+    top:13vw;
+    margin: 0;
+    padding:0;
+    position:fixed;    
+}
+
+.outer-circle{
+    border-radius: 50%;
+    width:16vw; 
+    height:16vw;
+    left:1vw;
+    top:1vw;
+    position: absolute;
+    background: rgb(0,42,26);
+    background: linear-gradient(0deg, rgba(0,42,26,1) 0%, rgba(11,43,66,1) 30%, rgba(75,25,80,1) 60%,
+     rgba(148,83,84,1) 85%, rgba(255,186,111,0.989233193277311) 100%);
+}
+
+.inner-circle{
+    background:rgb(0, 0, 0);
+    width:13vw; 
+    border-radius: 50%;
+    height:13vw;
+    left:2.5vw;
+    top:2.5vw;
+    position: absolute;
+}
+
+.span-for-circle {
+    color:#555;
+    display:block;
+    line-height:13.8vw;
+    text-align:center;
+    font-family:sans-serif;
+    font-size:2.9vw;
+    font-weight:100;
+    width:13vw; 
+    height:13vw;
+    position: absolute;
+}
+
+/* ******************************************************************************** */
+/********************************** error message ********************************/
+.coin-div-error{
+    background-color: rgba(128, 128, 128, 0.623);
+    width:30vw;
+    height:20vw;
+    margin:10vw;
+    border-radius: 10%;
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items:center;
+}
+
+.nothing-on-search{
+    padding:4vw 1vw 1vw 1vw;
+    width:25vw;
+    height:18vw;
+    text-align: center;
+}
+
+
+/* ***************************************************************************************** */
+/**************************************--- media query ---**********************************/
+
+@media screen and (max-width: 1350px) {
+    .coin-info{width:90%;margin: 0vw 5% 0vw 5%;}
+    .coin-symbol,.link-item{font-size: 100%;}
+    .my-nav-item,.my-nav-item-clear,.button-search,.input-search{font-size:69%;padding:0}
+    .coin-div{width:31.2%}
+    .my-nav-item-li:nth-child(5){margin:0 0 0 5% }
+}
+
+@media screen and (max-width: 1060px) {
+    .coin-div{width:47%}
+    .link-item{font-size:90%;width:50%;height:50%}
+    .my-aside-link-item{padding: 0}
+    .my-collapse-card>img{width:25%;height:50%;position:absolute;right:10%; bottom:3vw;}
+    .my-collapse-card>p{font-size:60%}
+    .my-name,.my-header-h2{font-size: 145%}
+    .web-developing,.my-header-h6{font-size:75%}
+    .organizing-the-updates>img{margin:-2% -1% 0 0}
+    .organizing-the-updates{font-size:1.3vw;}
+    .latest-for-p>p{margin-left:1vw}
+    .latest-update-More-Info:nth-child(3),.latest-update-Toggled-On:nth-child(3){padding:0;font-size:1.3vw}
+}
+
+@media screen and (max-width: 768px) {
+    .my-pictures{right:23vw;}
+    .about-web>h2,.about-me>h2{font-size:160%}
+    .all-the-words{font-size:100%}
+    .my-collapse-card{height:100%}
+    .my-collapse-card>p{font-size:90%}
+    .coin-div {width:100%}
+    .my-modal-main{width:60%;margin-left:20%}
+    .coin-info{margin: 0vw 10% 0vw 12.5%;width:75%;}
+    .my-nav-item,.my-nav-item-clear,.button-search,.input-search{font-size:60%}
+    .organizing-the-updates{font-size:1.9vw}
+    .latest-update-More-Info:nth-child(3),.latest-update-Toggled-On:nth-child(3){font-size:1vw}
+}
+
+@media screen and (max-width: 600px) {
+    .my-collapse-card>img{width:25%;height:50%;position:absolute;right:2%; bottom:2.8vw}
+    .my-collapse-card>p{font-size:70%}
+    .my-nav-item-li:nth-child(5),.input-search{margin:-2% 0 0 0%}
+    .my-nav-item,.my-nav-item-clear,.button-search,.input-search{font-size:45%}
+    .link-item{font-size:65%}
+    .web-developing-name{height:33%;margin-top:10%}
+}
