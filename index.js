@@ -78,7 +78,7 @@ const getMyThings = (url,continueUrl)=>{
         url: `${url}${continueUrl}`,
 
         //fourth key of the ajax is success:
-        success: function(){
+        success: ()=>{
             myBarPercent=100;
             //calling the function that create the progress bar one last time:
             circleProgressBar ();
@@ -197,9 +197,15 @@ const errorWithCoin = (error)=>{
 // *************************************************************************************************//
 // ********************-----changing the content of the collapse element-----**********************//
 const changeMoreInfo = async(coin)=>{
+    //after the timeout is finished the progressBar needed to be executed 
+    animateProgressBar();
     //after the timeout is finished the call to get needed to be executed 
-    const thisOneCoin = await getMyThings("https://api.coingecko.com/api/v3/coins/",coin);
+    const thisOneCoin = await getMyThings("https://api.coingecko.com/api/v3/coins/",coin.id);
     
+    //if they finished waiting for 2 minutes they would be removed 
+    temporary.splice((temporary.indexOf(coin)),1);
+    //after the info has been updating the sessionStorage need to remove the coin
+    sessionStorage.setItem("temporary", JSON.stringify(temporary));  
     //changing the three dot after the long numbers:
     let myRoundUsd = parseFloat(thisOneCoin.market_data.current_price.usd.toFixed(3));
     let myRoundEur = parseFloat(thisOneCoin.market_data.current_price.eur.toFixed(3));
@@ -269,33 +275,22 @@ const openModal = (searchOfCoinsArray)=>{
 };
 
 // *************************************************************************************//
-// **************-----it's doing the special search for you coins-----*****************//
-const searchCoins = () => {
+// ********************-----it's doing the search for you coins-----*******************//
+const searchCoins = async() => {
     try {
         const inputSearch = document.querySelector(".input-search").value.toLowerCase();
         let searchOfCoinsArray = [];
-        const myCoinsContent = JSON.parse(localStorage.getItem("coins"));
-
-        myCoinsContent.forEach(coin => {
-            //creating array with both it's id and symbol, 
-            //so your search of coins can be either with the coin id or the coin symbol
-            let array = [coin.id,coin.symbol];
-            array.filter(e=>{
-                if( e.toLowerCase().indexOf(inputSearch) !== -1){
-                    if(searchOfCoinsArray.indexOf(coin) !== -1){
-                        //if there are coins with coins id and coins symbol that matches your search
-                        //this will remove one so there would be no duplicates                        
-                        searchOfCoinsArray.splice(searchOfCoinsArray.indexOf(coin), 1);
-                    }
-                    searchOfCoinsArray.push(coin);
-                };                
-            });
-        });
-        //building the main div with only the coins that matches your search
-        const theCoin = allCountriesCoins(searchOfCoinsArray);
+        const thisSearchedCoin = await getMyThings("https://api.coingecko.com/api/v3/coins/",inputSearch);
+        if(thisSearchedCoin===undefined) throw ""
+        if(typeof thisSearchedCoin ==='object'){
+            searchOfCoinsArray.push(thisSearchedCoin);
+        }else{
+            searchOfCoinsArray = thisSearchedCoin;
+        }        
+        allCountriesCoins(searchOfCoinsArray);
 
     } catch (error) {
-        console.log("oh no! problem with making the search", error);
+        errorWithCoin("Sorry, there are no coins with those criteria")
     }
 }
 
@@ -311,6 +306,12 @@ const tempInfo = (button) => {
         temporary.forEach(coin=>{
             if(coin.symbol ===button.id){
                 checking = true;
+                var now = new Date().getTime();
+                if(now-coin.time >= 10000){
+                    //in order to change the information in the collapse, I need the whole coin Info,
+                    //I can get it from the "GET" i just did
+                    changeMoreInfo(coin);
+                }
             }
         });
         //would only call the tempSetTimeout() when it is yet to be inside the temporary array
@@ -323,54 +324,12 @@ const tempInfo = (button) => {
                 time: now
             });                  
             sessionStorage.setItem("temporary", JSON.stringify(temporary));
-            tempSetTimeout(theCoin.id);
+            // tempSetTimeout(temporary.find(coin=> coin.time===now));
             yourLatestUpdate(theCoin,"More-Info");
         }
 
     } catch (error) {
         console.log("oh no! problem with clearing/adding the More-Info Buttons to temporary Storage", error);
-    }
-}
-
-// ********************************************************************************************************//
-// *************-----it's creating the timeout for the collapsing area that was chosen-----***************//
-const tempSetTimeout = (now) =>{
-    // //checking if the coin has time left from 2 minutes
-    // if(now===undefined){
-    //     setMyTimeout=10000;
-    // }else{
-    //     setMyTimeout=now;
-    // }
-    setTimeout(()=>{doTheRightTimeOut()}, now);
-}
-
-// ********************************************************************************************************//
-// **********************-----it's making sure the right setTimeout gets done-----***********************//
-const doTheRightTimeOut = ()=>{
-    try{
-        var now = new Date().getTime();
-        //checking if the temporary has any values. 
-        //if it has, all it's values assessed     
-        if (temporary.length!== 0) {
-            temporary.map((coin,index)=>{
-                if(now-coin.time > 10000) {
-                    //after the timeout is finished the progressBar needed to be executed 
-                    animateProgressBar();
-                    
-                    //in order to change the information in the collapse, I need the whole coin Info,
-                    //I can get it from the "GET" i just did
-                    changeMoreInfo(coin.id);
-
-                    //if they finished waiting for 2 minutes they would be removed 
-                    temporary.splice(index,1);
-                    //after the info has been updating the sessionStorage need to remove the coin
-                    sessionStorage.setItem("temporary", JSON.stringify(temporary));        
-
-                }
-            });       
-        }; 
-    } catch (error) {
-        console.log("oh no! problem with making the function for setTimeout", error);
     }
 }
 
@@ -707,14 +666,6 @@ window.onload= ()=>{
         //and asking if the timeout for all the coins has ran out:
         if (sessionStorage.getItem("temporary")) {
             temporary = JSON.parse(sessionStorage.getItem("temporary"));
-            var now = new Date().getTime();
-            temporary.map(async(coin)=>{
-                if(now-coin.time <= 10000) {
-                    //if they haven't finished waiting for 2 minutes, 
-                    //the tempSetTimeout() will make them wait the rest of the time needed
-                    tempSetTimeout(now-coin.time);
-                };
-            });  
         }else{
             temporary = [];
             sessionStorage.setItem("temporary", JSON.stringify(temporary)); 
