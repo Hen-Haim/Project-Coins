@@ -1,22 +1,15 @@
 //the array i'm using for reports and switches:
 let coinsSymbol;
-
 //the name of the interval of the reports that needed to end after changing the web display:
 var myReportsInterval;
-
 //the array I need for the "more info" buttons
 let temporary;
-
 //the boolean that telling me if the coins chosen are more than 5:
 let isMoreThanFive = false;
-
 //the variable the progress bar is using to start it's percentage:
 let myBarPercent = 0;
-
 //the array I need for the "latest-interest" div
 let latest;
-
-// localStorage.clear();
 
 // **********************************************************************************************//
 // **********-----initiate all the local storage , also the starting function-----*************//
@@ -73,10 +66,8 @@ const getMyThings = (url,continueUrl)=>{
         },
         //second key of the ajax is type:
         type: 'GET',
-
         //third key of the ajax is url:
         url: `${url}${continueUrl}`,
-
         //fourth key of the ajax is success:
         success: ()=>{
             myBarPercent=100;
@@ -104,7 +95,6 @@ const allCountriesCoins = (myCoinsContent) => {
         if(isMoreThanFive===true){
             divContent = document.querySelector(".my-model-body");
             isMoreThanFive = false;
-
         }else{
         divContent = document.querySelector(".my-content");
         }
@@ -153,7 +143,6 @@ const allCountriesCoins = (myCoinsContent) => {
             //all switch with this class has two elements; one that is on the div that called
             //"my-content" and the other is on the modal:
             let mySwitch = document.querySelectorAll(`.my-${myCoinsContent[i].symbol}`);
-            
             mySwitch.forEach(mySwitches=> mySwitches.onchange = (e) => activateToggle(e.target,myCoinsContent[i]));        
         }
         //after the home page loaded, I need to toggle the switches that was saved as checked: 
@@ -170,7 +159,7 @@ const allCountriesCoins = (myCoinsContent) => {
 const makingItChecked = () => { 
     try{
         for(let i=0;i<coinsSymbol.length;i++){
-
+            //to every switch there are two switches: one that is on the main div and one on the model:
             let mySwitch = document.querySelectorAll(`.my-${coinsSymbol[i].symbol}`);
             if(mySwitch !== null){
                 mySwitch.forEach(mySwitches=>mySwitches.checked = true)
@@ -185,13 +174,10 @@ const makingItChecked = () => {
 // ***************************-----presenting an error on screen-----******************************//
 const errorWithCoin = (error)=>{
     let divContent = document.querySelector(".my-content");
-    divContent.innerHTML = "";
-    let myCoin = document.createElement("div");
-    divContent.appendChild(myCoin);
-    myCoin.className = "row row-cols-1 row-cols-md-3 g-4 coin-div-error";
-    myCoin.id = `my-coin-error`
-    myCoin.innerHTML = `
-        <h3 class="nothing-on-search">${error}</h3>`
+    divContent.innerHTML = `
+    <div class="row row-cols-1 row-cols-md-3 g-4 coin-div-error" id="my-coin-error">
+    <h3 class="nothing-on-search">${error}</h3>
+    </div>`;
 }
 
 // *************************************************************************************************//
@@ -225,7 +211,6 @@ const changeMoreInfo = async(coin)=>{
 const activateToggle = (mySwitch,coinObj) => {
     try{
         if (mySwitch.checked === true) {   //if it turn the switch on
-        
             if (coinsSymbol.length < 5) {   //if it's less than five it means its good                
                 mySwitch.checked = true;
                 coinsSymbol.push(coinObj);
@@ -241,7 +226,6 @@ const activateToggle = (mySwitch,coinObj) => {
             yourLatestUpdate(coinObj,"Toggled-On");
 
         } else {      //if it turn the switch off
-        
             mySwitch.checked = false;
             
             for (let i = 0; i < coinsSymbol.length; i++) {      //remove from array coinsSymbol
@@ -258,7 +242,6 @@ const activateToggle = (mySwitch,coinObj) => {
                 theOtherSwitch[0].checked = false;
             }
         }
-
         localStorage.setItem("limitFive", JSON.stringify(coinsSymbol));
 
     }catch(error){
@@ -288,12 +271,10 @@ const searchCoins = async() => {
             searchOfCoinsArray = thisSearchedCoin;
         }        
         allCountriesCoins(searchOfCoinsArray);
-
     } catch (error) {
         errorWithCoin("Sorry, there are no coins with those criteria")
     }
 }
-
 
 // ********************************************************************************************************//
 // *************-----it's creating the timeout for the collapsing area that was chosen-----***************//
@@ -339,10 +320,8 @@ const mySwitchClear= ()=>{
     try{
         let mySwitch = document.querySelectorAll(".coin-toggle-switch");
         mySwitch.forEach(coin=>coin.checked = false);
-
         coinsSymbol = [];
         localStorage.setItem("limitFive", JSON.stringify(coinsSymbol));
-
     } catch (error) {
         console.log("oh no! problem with clearing the switches", error);
     }
@@ -355,7 +334,6 @@ const reportsLive = async () => {
         clearInterval(myReportsInterval);
         activating("reports");
         const divContent = document.querySelector(".my-content");
-        divContent.innerHTML = "";
         divContent.innerHTML = `<div id="chartContainer" class="my-chart-report"></div>`;
 
         //this is the graph template,where the whole chart is built
@@ -457,7 +435,6 @@ const listOfCoins = async () => {
         let theRestUrl = coinsSymbol.map(coin=> coin.symbol);
         const mySelectedCoins = await getMyThings(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=${theRestUrl}&tsyms=USD`,"");
         return mySelectedCoins;
-
     } catch (error) {
         console.log("oh no! problem with making the list", error)
     }
@@ -470,37 +447,34 @@ const myAbout = (whatIsIt)=>{
         clearInterval(myReportsInterval);
         activating("about");
         let divContent = document.querySelector(".my-content");
-        divContent.innerHTML = ``;
-        let myCoin = document.createElement("div");
-        divContent.appendChild(myCoin);
-        myCoin.className = "about-div";
-        
-        myCoin.innerHTML = `
-        <div class="about-main">
-            <div class="about-web">
-                <h2 class="description">Web Description</h2>
-                <div>
-                <p class="all-the-words">
-                This site displays a selected amount of coins, allows access to all information about them and shows reports in real time.<br><br>
-                The purpose of creating this site is practical learning as part of the "Full Stack Web Developers" course of the training college "John Bryce", appling the variety of tools acquired during the course so far.<br><br>
-                The project was allocated a month to do.<br><br>
-                The success of the project is the assimilation of the material studied and the construction of correct applied thinking for future projects.<br>
-                The site will be for client side only and contains various API calls.<br><br>
-                The following topics were implemented in this project:<br><br>
-                ▪ HTML + CSS: New HTML5 tags, CSS3 media queries and advanced selectors, Dynamic page layouts
-                Bootstrap & flex.<br><br>
-                ▪ JavaScript:Objects, Callbacks, Promises, Async Await, jQuery, Single Page Application foundations, Events, Ajax (RESTful API), Documentation<br>
-                ▪ External APIs
-                </p>
+        divContent.innerHTML = `
+        <div class="about-div">
+            <div class="about-main">
+                <div class="about-web">
+                    <h2 class="description">Web Description</h2>
+                    <div>
+                        <p class="all-the-words">
+                            This site displays a selected amount of coins, allows access to all information about them and shows reports in real time.<br><br>
+                            The purpose of creating this site is practical learning as part of the "Full Stack Web Developers" course of the training college "John Bryce", appling the variety of tools acquired during the course so far.<br><br>
+                            The project was allocated a month to do.<br><br>
+                            The success of the project is the assimilation of the material studied and the construction of correct applied thinking for future projects.<br>
+                            The site will be for client side only and contains various API calls.<br><br>
+                            The following topics were implemented in this project:<br><br>
+                            ▪ HTML + CSS: New HTML5 tags, CSS3 media queries and advanced selectors, Dynamic page layouts
+                            Bootstrap & flex.<br><br>
+                            ▪ JavaScript:Objects, Callbacks, Promises, Async Await, jQuery, Single Page Application foundations, Events, Ajax (RESTful API), Documentation<br>
+                            ▪ External APIs
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-buttons">
+                <div class="button-location">
+                    <button class="web-button-about" onclick="myAbout('web')">Web</button>
+                    <button class="me-button-about"onclick="myAbout('me')">Me</button>
                 </div>
             </div>
         </div>         
-        <div class="about-buttons">
-            <div class="button-location">
-                <button class="web-button-about" onclick="myAbout('web')">Web</button>
-                <button class="me-button-about"onclick="myAbout('me')">Me</button>
-            </div>
-        </div>                  
         `
         if(whatIsIt==="me"){
             let mainAbout = document.querySelector(".about-main");
@@ -542,7 +516,6 @@ const myAbout = (whatIsIt)=>{
     }
 }
 
-
 // *************************************************************************************************//
 // **********-----clearing the 6th switch if the user didn't pick it from the modal-----***********//
 const clearingTheFive=()=>{
@@ -560,7 +533,6 @@ const circleProgressBar = () => {
     try{
         //changing the degrees key so it would be as the the percentage:
         var degrees = Math.floor(myBarPercent/100*360);
-
         //animating the circle:
         $('.outer-circle').animate(
             {deg: degrees},
@@ -575,7 +547,6 @@ const circleProgressBar = () => {
         //rotating the circle after the last degrees so that each time the loading upgrade it would be 
         //from the same spot it was when it start.
         document.querySelector('.outer-circle').style.transform = `rotate(${Math.floor(myBarPercent/100*360)}deg)`;
-
         //getting the span to write the percentages:
         var span = document.querySelector(".span-for-circle");    
         span.textContent = myBarPercent + '%';
@@ -599,9 +570,6 @@ const yourLatestUpdate = (update,where) =>{
     try{
         let divContainer = document.querySelector(".latest-update-content");
         divContainer.innerHTML="";
-        let createDiv = document.createElement("div");
-        divContainer.appendChild(createDiv);
-
         //if "update" is defined then this happen:
         if(update!==undefined){
             if(latest.length===10){
@@ -616,7 +584,6 @@ const yourLatestUpdate = (update,where) =>{
             });
             localStorage.setItem("latest", JSON.stringify(latest));
         }
-
         latest.forEach(latestObject=>{
             let createDiv = document.createElement("div");
             divContainer.appendChild(createDiv);
@@ -640,15 +607,10 @@ const yourLatestUpdate = (update,where) =>{
 const activating = (menu) =>{
     let barMenu = document.querySelectorAll(".my-nav-item");
     barMenu.forEach(item=>{
-        if(item.classList.contains("active")){
-            item.classList.remove("active");
-        }
-        if(item.classList.contains(`${menu}`)){
-            item.classList.add("active");
-        }
+        if(item.classList.contains("active")){item.classList.remove("active")}
+        if(item.classList.contains(`${menu}`)){item.classList.add("active")}
     })
 }
-
 
 // *************************************************************************************************//
 // ************************************----- loading the page-----*********************************//
@@ -670,18 +632,14 @@ window.onload= ()=>{
             temporary = [];
             sessionStorage.setItem("temporary", JSON.stringify(temporary)); 
         }
-        
         //initiate/getting the latest interests and the "latest" array:
         if (localStorage.getItem("latest")) {
         latest = JSON.parse(localStorage.getItem("latest"));
             yourLatestUpdate();
-    
         }else{
             latest = [];
             localStorage.setItem("latest", JSON.stringify(latest)); 
         }
-        // doTheRightTimeOut()
-
         //if you pressed refresh before pressing x on the modal it will show you the modal again with this:
         if(coinsSymbol.length===6){openModal(coinsSymbol.slice(0,-1))};
     } catch (error) {
